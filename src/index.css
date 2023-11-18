@@ -1,0 +1,99 @@
+@import url("https://fonts.googleapis.com/css?family=Montserrat:100,200,300,regular,500,600,700,800,900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #292929;
+  color: #fff;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+.container.sidebar {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 24px;
+}
+
+.container.sidebar>*:nth-child(1) {
+  grid-column-start: 1;
+  grid-column-end: 10;
+}
+
+.container.sidebar>*:nth-child(2) {
+  grid-column-start: 10;
+  grid-column-end: 13;
+}
+
+@media(max-width: 768px) {
+  .container.sidebar {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+}
+
+a {
+  color: #fff;
+  text-decoration: none;
+}
+
+h1 {}
+
+h2 {
+  font-size: 36px;
+  font-weight: 700;
+}
+
+@media(max-width: 768px) {
+  h2 {
+    font-size: 32px;
+  }
+}
+
+@media(max-width: 425px) {
+  h2 {
+    font-size: 28px;
+  }
+}
+
+.icon {
+  font-family: 'Material Symbols Rounded';
+  font-variation-settings: 'wght' 300;
+  font-style: normal;
+}
+
+.icon.has-x-large-font-size {
+  font-size: 60px;
+  line-height: 80%;
+}
+
+.icon.has-large-font-size {
+  font-size: 30px;
+}
+
+ul,
+ol {
+  padding-left: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: .5em;
+}
+
+h3 {
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.flexBlock {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}

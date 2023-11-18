@@ -1,0 +1,10 @@
+.posts {
+	display: flex;
+	flex-direction: column;
+	gap: 24px;
+}
+
+.title {
+	display: inline-block;
+	margin-bottom: 16px;
+}
