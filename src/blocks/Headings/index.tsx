@@ -1,11 +1,9 @@
 import { useQuery } from '@tanstack/react-query';
-// import styles from './index.module.scss';
-import React from 'react';
 import { WordpressService } from '../../services/wordpress';
 import { getRandomInt } from '../../functions/getRandomInt';
 import { Card } from '../../components';
 
-export const Headings = (): React.ReactElement => {
+export const Headings = () => {
 	const { isSuccess, isLoading, isError, data, error } = useQuery(['headlings'], () => WordpressService.getHeadlings());
 
 	if (isError) {

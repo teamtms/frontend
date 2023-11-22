@@ -1,6 +1,9 @@
-import { Title1 } from "./Title1";
-import { Title2 } from "./Title2";
+
 import { Card } from "./Card";
 import { Icon } from "./Icon";
+import { Body1Strong } from "./Body1Strong";
+import { Button } from "./Button";
+import { Input } from "./Input";
+import { Spoiler } from "./Spoiler";
 
-export { Title1, Title2, Card, Icon };
+export { Card, Icon, Body1Strong, Button, Input, Spoiler };

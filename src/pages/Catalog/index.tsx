@@ -1,45 +1,30 @@
-import styles from './index.module.scss';
-import { ReactElement } from 'react';
+// import styles from './index.module.scss';
+import { ReactElement, lazy } from 'react';
 
-import { useQuery } from '@tanstack/react-query';
-
-import { WordpressService } from '../../services/wordpress';
-import { PostCard } from './PostCard';
-
-import { useParams } from 'react-router-dom';
-
-import { Title1 } from '../../components';
+const Title1 = lazy(() => import('../../components/Title1'));
 import { Sidebar } from '../../blocks/Sidebar/index';
-import { IPost } from '../../interfaces/IPost';
-import { getRandomInt } from '../../functions/getRandomInt';
 
 
-export const Catalog = (): ReactElement => {
-	const params = useParams();
+const Catalog = (): ReactElement => {
+	// const params = useParams();
 
-	let getPosts: Function = () => WordpressService.getPosts();
+	// let getPosts: Function = () => WordpressService.getPosts();
 
-	if (Object.keys(params).length !== 0)
-		getPosts = () => WordpressService.getPostsByHeadingId(Number(params.id));
+	// if (Object.keys(params).length !== 0)
+	// 	getPosts = () => WordpressService.getPostsByHeadingId(Number(params.id));
 
-	const {
-		isLoading,
-		isError,
-		data,
-	} = useQuery(['posts'], () => getPosts());
+	// const { isLoading, isError, data } = useQuery(['posts'], () => WordpressService.getPosts());
 
-	const { data: headingData } = useQuery(['heading'], () => WordpressService.getHeadingById(Number(params.id)),
-		{
-			retry: 0
-		});
-
-	if (isLoading) return <>Подождите...</>
-	if (isError) return <>Ошибка...</>
+	// if (isLoading) return <>Подождите...</>
+	// if (isError) return <>Ошибка...</>
 
 	return (
 		<div className='container sidebar'>
-			<div className={styles.content}>
-				<Title1 className={styles.title}>{isNaN(Number(params.id)) ? <>Все посты</> : <>Все посты в рубрике {headingData?.data.name}</>}</Title1>
+			<Title1>
+				Тут что-то не работает, поэтому главной временно нет
+			</Title1>
+			{/* <div className={styles.content}>
+				<Title1 className={styles.title}>Все посты в рубрике {data?.data[0].title.rendered}</Title1>
 				<div className={styles.posts}>
 					{data ? data.data.map((post: IPost) =>
 						<PostCard
@@ -51,8 +36,10 @@ export const Catalog = (): ReactElement => {
 							tags={post.acf.tags}
 						/>) : ''}
 				</div>
-			</div>
+			</div> */}
 			<Sidebar />
 		</div>
 	);
 };
+
+export default Catalog;

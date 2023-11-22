@@ -1,0 +1,22 @@
+.title {
+	display: flex;
+	align-items: center;
+	gap: 16px;
+	width: 100%;
+	cursor: pointer;
+
+	&::marker {
+		display: none;
+	}
+
+	&::before {
+		content: '+';
+		font-size: 32px;
+		font-weight: 700;
+	}
+}
+
+.content {
+	padding-top: 12px;
+	margin-bottom: 16px;
+}

@@ -23,4 +23,5 @@ export const WordpressService = {
 	getPages: () => axios.get<IPage[]>(`${API}/pages`),
 	getPageById: (id: number) => axios.get<IPage>(`${API}/pages/${id}`),
 	getNavigations: () => axios.get<INavigation[]>(`${API}/navigation`),
+	getWebhookFiles: () => axios.get<IPost[]>(`${API}/webhook-files`),
 } 

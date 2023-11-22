@@ -1,0 +1,22 @@
+.title {
+	font-weight: inherit;
+	display: flex;
+	align-items: center;
+	gap: 12px;
+
+	&::marker {
+		content: '';
+	}
+
+	&::before {
+		content: '▶';
+		font-size: 14px;
+		transform: translateY(-2px);
+
+		[open] & {
+			transform: rotateZ(90deg);
+		}
+	}
+}
+
+.body1 {}

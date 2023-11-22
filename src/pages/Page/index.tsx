@@ -1,11 +1,11 @@
 import { useQuery } from '@tanstack/react-query';
 import './index.scss';
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 
 import { useParams } from 'react-router-dom';
 import { WordpressService } from '../../services/wordpress';
 
-export const Page = (): React.ReactElement => {
+export const Page = () => {
 	const params = useParams();
 
 	const { isLoading, isSuccess, isError, data, error } = useQuery([`page-${params.id}`],

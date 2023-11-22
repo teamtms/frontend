@@ -1,7 +1,8 @@
 import styles from './index.module.scss';
-import React, { HTMLAttributes } from 'react';
+import { HTMLAttributes, lazy } from 'react';
 
-import { Card, Title2 } from '../../../components';
+import { Card } from '../../../components';
+const Title2 = lazy(() => import('../../../components/Title2'));
 import { Icon } from '../../../components/Icon/index';
 
 interface PostCardProps extends HTMLAttributes<HTMLDivElement> {
@@ -12,7 +13,7 @@ interface PostCardProps extends HTMLAttributes<HTMLDivElement> {
 	tags: string
 }
 
-export const PostCard = (props: PostCardProps): React.ReactElement => {
+export const PostCard = (props: PostCardProps) => {
 	return (
 		<Card className={styles.card}>
 			<img src={props.image} alt="" />

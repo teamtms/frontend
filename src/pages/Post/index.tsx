@@ -10,6 +10,7 @@ import { Icon } from '../../components/Icon/index';
 import { Breadcrumbs } from '../../components/Breadcrumbs/index';
 import { PostCard } from '../Catalog/PostCard/index';
 import { Title2 } from '../../components/Body1/index';
+import { Card } from '../../components';
 
 const fetchImage = async (id: number) => {
 	const { data } = await WordpressService.getMediaById(id);
@@ -49,7 +50,7 @@ const PostDisplay = (props: PostProps): React.ReactElement => {
 					<img src={props.image} className={styles.image} alt="" />
 				</div>
 				: ''}
-			<div className={`container 
+			<Card className={`container 
 				${props.appearance === '1' ? styles.upper : ''}  
 				${props.appearance !== '2' ? styles.card : ''}
 				${styles.container}`}>
@@ -71,12 +72,12 @@ const PostDisplay = (props: PostProps): React.ReactElement => {
 				</div>
 				<div className={styles.article} dangerouslySetInnerHTML={{ __html: props.content }}></div>
 				<div className={styles.infoBlock}><Icon icon='sell' /> {props.tags}</div>
-			</div>
+			</Card>
 		</>
 	)
 }
 
-export const Post = (): React.ReactElement => {
+const Post = (): React.ReactElement => {
 	const params = useParams();
 
 	const { isSuccess, isError, isLoading, data, error } = useQuery(['post'], () => WordpressService.getPostById(Number(params.id)));
@@ -126,21 +127,25 @@ export const Post = (): React.ReactElement => {
 					tags={data.data.acf.tags}
 					image={imageIsSuccess ? imageData!.guid.rendered : '#'}
 				/>
-				<div className={`container ${styles.posts}`}>
-					<Title2>Последние статьи</Title2>
-					{catalog?.data.map((item, index) => <>
-						{index < 3 ?
-							<PostCard
-								key={index}
-								title={item.title.rendered}
-								excerpt={item.excerpt.rendered}
-								url={`?${getRandomInt(512)}/#/p/${item.id}`}
-								image=''
-								tags={item.acf.tags}
-							/> : ''}
-					</>)}
+				<div className={styles.posts}>
+					<div className={`container ${styles.postsContainer}`}>
+						<Title2>Последние статьи</Title2>
+						{catalog?.data.map((item, index) => <>
+							{index < 3 ?
+								<PostCard
+									key={index}
+									title={item.title.rendered}
+									excerpt={item.excerpt.rendered}
+									url={`?${getRandomInt(512)}/#/p/${item.id}`}
+									image=''
+									tags={item.acf.tags}
+								/> : ''}
+						</>)}
+					</div>
 				</div>
 			</>
 		);
 	}
 };
+
+export default Post;

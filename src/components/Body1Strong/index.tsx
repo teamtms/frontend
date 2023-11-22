@@ -2,8 +2,8 @@ import styles from './index.module.scss';
 
 import { TextProps } from '../../interfaces/TextProps';
 
-export const Title2 = (props: TextProps) => {
+export const Body1Strong = (props: TextProps) => {
 	return (
-		<h2 className={styles.title2}>{props.children}</h2>
+		<strong className={styles.body1strong}>{props.children}</strong>
 	);
 };

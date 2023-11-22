@@ -1,0 +1,83 @@
+.button-1 {
+	padding: 12px;
+	border-radius: 8px;
+	background-color: var(--foreground-color);
+	display: block;
+	color: var(--background-color);
+	outline: none;
+	border: none;
+	box-shadow: none;
+	cursor: pointer;
+
+	font-family: 'Montserrat', sans-serif;
+
+	&:hover {
+		background-color: rgba(#ffffff, 90%);
+	}
+}
+
+.button-2 {
+	transition: background-color .5s, color .5s;
+	padding: 12px;
+	border-radius: 8px;
+	display: block;
+	background-color: transparent;
+	color: var(--foreground-color);
+	border: none;
+	outline: var(--foreground-color) 1px solid;
+	outline-offset: -1px;
+	box-shadow: none;
+	cursor: pointer;
+
+	font-family: 'Montserrat', sans-serif;
+
+	&:hover {
+		background-color: var(--foreground-color);
+		color: var(--background-color);
+	}
+}
+
+.button-3,
+.button-3-1 {
+	transition: background-color .3s, box-shadow .3s, color .3s, transform .5s;
+	background-color: var(--accent-color);
+	box-shadow: none;
+	outline: none;
+	border: none;
+	color: var(--foreground-color);
+	padding: 10px;
+	border-radius: 8px;
+	cursor: pointer;
+
+	&:hover {
+		background-color: var(--accent-color-hover);
+	}
+
+	&.appearance-link {
+
+		background-color: transparent;
+		padding: 0;
+		font-family: inherit;
+		font-size: 16px;
+	}
+}
+
+.button-3-1 {
+	font-family: 'Montserrat', sans-serif;
+	font-size: 16px;
+
+	&:not(.appearance-link) {
+		&:hover {
+			transform: translate(-2px, -2px);
+			background-color: var(--accent-color);
+			box-shadow: var(--accent-color) 0px 0px 8px;
+		}
+	}
+
+	&.appearance-link {
+		&:hover {
+			transform: translate(-2px, -2px);
+			color: var(--foreground-hover-color);
+		}
+	}
+}

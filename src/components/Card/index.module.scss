@@ -1,8 +1,25 @@
 .card {
-	background-color: #333;
+	background-color: var(--secondary-background-color);
 	padding: 16px;
 	border-radius: 8px;
 	display: flex;
 	flex-direction: column;
 	gap: 8px;
+}
+
+.card_3,
+.card_3-1 {
+	background-color: var(--secondary-background-color);
+	border: var(--borders-color) 1px solid;
+	border-radius: 8px;
+	padding: 16px 24px;
+}
+
+.card_3-1 {
+	transition: box-shadow .3s, transform .3s;
+
+	&:hover {
+		box-shadow: var(--secondary-background-color) 0 0 16px;
+		transform: translate(-2px, -2px);
+	}
 }

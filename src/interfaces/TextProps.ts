@@ -1,5 +1,5 @@
-import { HTMLAttributes, ReactElement } from "react";
+import { HTMLAttributes, ReactNode } from "react";
 
 export interface TextProps extends HTMLAttributes<HTMLDivElement> {
-	children?: ReactElement | string
+	children?: ReactNode
 }

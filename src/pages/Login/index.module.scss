@@ -1,0 +1,23 @@
+.card {
+	padding-block: 20px !important;
+}
+
+.form {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+}
+
+.title {
+	margin-bottom: 8px;
+	text-align: center;
+}
+
+.card {
+	max-width: 400px;
+	margin: 0 auto;
+}
+
+.button {
+	margin-top: 8px;
+}

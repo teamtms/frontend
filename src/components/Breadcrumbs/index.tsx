@@ -1,12 +1,11 @@
 import styles from './index.module.scss';
-import React from 'react';
 import { Icon } from '../Icon/index';
 
 interface BreadcrumbsProps extends React.HTMLAttributes<HTMLUListElement> {
 	items: { name: string, url: string }[]
 }
 
-export const Breadcrumbs = ({ items, className, ...props }: BreadcrumbsProps): React.ReactElement => {
+export const Breadcrumbs = ({ items, className, ...props }: BreadcrumbsProps) => {
 	return (
 		<ul className={`${styles.breadcrumbs} ${className}`} {...props}>
 			{items.map((item, index) =>

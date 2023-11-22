@@ -1,0 +1,98 @@
+.form {
+	background-color: var(--secondary-background-color);
+	border: var(--borders-color) 1px solid;
+	border-radius: 8px;
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+	max-width: 420px;
+	margin: 0 auto;
+	padding: 16px;
+	margin-bottom: 8px;
+}
+
+.webhookSelect {
+	flex-direction: row;
+	align-items: center;
+	padding: 8px 16px;
+	justify-content: space-between;
+
+	input {
+		border: none;
+		outline: none;
+		box-shadow: none;
+	}
+}
+
+.webhookLabel {
+	display: flex;
+	gap: 8px;
+	align-content: center;
+}
+
+.title {
+	margin-bottom: 16px;
+}
+
+.webhooks {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 8px;
+	margin-bottom: 8px;
+}
+
+.spoiler {}
+
+.spoilerTitle {
+	cursor: pointer;
+
+	&::marker {
+		content: '';
+	}
+}
+
+.spoilerTitleInner {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+
+	&::before {
+		transition: transform .3s;
+		content: '▶';
+		font-size: 12px;
+		font-weight: inherit;
+
+		[open] & {
+			transform: rotateZ(90deg);
+		}
+	}
+}
+
+.spoilerContent {
+	margin-top: 12px;
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+}
+
+.forms {
+	display: flex;
+	align-items: flex-start;
+	gap: 8px;
+
+	@media (max-width: 768px) {
+		flex-wrap: wrap;
+	}
+
+
+	&>* {
+		flex-basis: 50%;
+		width: 100%;
+		max-width: 100%;
+
+		@media (max-width: 768px) {
+
+			flex-basis: 100%;
+		}
+	}
+}

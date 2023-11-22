@@ -1,9 +1,9 @@
 import styles from './index.module.scss';
-import React, { HTMLAttributes } from 'react';
+import { HTMLAttributes } from 'react';
 
-export const Card = ({ children, className, ...props }: HTMLAttributes<HTMLDivElement>): React.ReactElement => {
+export const Card = ({ children, className, ...props }: HTMLAttributes<HTMLDivElement>) => {
 
 	return (
-		<div className={`${styles.card} ${className}`} {...props}>{children}</div>
+		<div className={`${styles[`card_${localStorage.getItem('brand-theme')}`]} ${styles.card} ${className}`} {...props}>{children}</div>
 	);
 };

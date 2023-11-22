@@ -1,5 +1,5 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
+import { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
 import './index.css';
 
 import { WordpressService } from './services/wordpress';
@@ -22,15 +22,15 @@ const queryClient = new QueryClient();
     document.title = 'Техническое обслуживание';
   }
 
-  ReactDOM.createRoot(document.getElementById('root')!).render(
-    <React.StrictMode>
+  createRoot(document.getElementById('root')!).render(
+    <StrictMode>
       <QueryClientProvider client={queryClient}>
         <SiteSettingsContext.Provider
           value={{ title: response.data.name, description: response.data.description, icon: response.data.site_icon_url }}>
           <App />
         </SiteSettingsContext.Provider>
       </QueryClientProvider>
-    </React.StrictMode>,
+    </StrictMode>,
   )
 
 })();

@@ -62,21 +62,36 @@
 	transition: background-color .5s, color .5s;
 	user-select: none;
 	cursor: crosshair;
-	border: #fff 2px solid;
 	border-radius: 8px;
 	font-weight: 500;
 	display: flex;
 	align-items: center;
 	gap: 16px;
+	flex-direction: row !important;
 
 	padding: 8px 16px;
 
 	i {
 		font-variation-settings: 'wght' 260;
 	}
+}
 
-	&:hover {
-		background-color: #fff;
-		color: #333;
-	}
+.profileBlock {
+	display: flex;
+	align-items: center;
+	gap: 4px;
+}
+
+.profileCard {
+	flex-direction: row !important;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+	gap: 16px !important;
+}
+
+.avatar {
+	width: 32px;
+	border-radius: 4px;
+	margin-right: 8px;
 }

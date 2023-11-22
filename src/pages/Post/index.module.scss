@@ -22,11 +22,11 @@
 }
 
 .container {
-	max-width: 1200px;
+	max-width: 1150px;
 
 	&.card {
 		background-color: #333;
-		padding: 32px;
+		// padding: 16px 24px;
 		border-radius: 16px;
 		max-width: 1136px;
 	}
@@ -65,10 +65,16 @@
 }
 
 .posts {
-	max-width: 1200px;
-	display: flex;
-	flex-direction: column;
-	gap: 24px;
-	padding: 0;
+	max-width: 100%;
+
+	padding: 60px 0;
+	position: relative;
+	z-index: 20;
 	margin: 24px auto;
+
+	.postsContainer {
+		display: flex;
+		flex-direction: column;
+		gap: 24px;
+	}
 }
