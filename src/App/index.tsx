@@ -1,9 +1,7 @@
-import { useEffect, createContext, useState, Suspense, lazy } from 'react';
+import { useEffect, createContext, useState, Suspense, lazy, useContext } from 'react';
 
-// import { Header } from '../blocks/Header';
 import { HashRouter, Route, Routes } from 'react-router-dom';
 
-import { useContext } from 'react';
 import { SiteSettingsContext } from '../contexts/SiteSettings';
 import { Input } from '../components/Input';
 import { useLogin } from '../pages/Login';

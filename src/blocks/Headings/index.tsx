@@ -1,10 +1,10 @@
 import { useQuery } from '@tanstack/react-query';
-import { WordpressService } from '../../services/wordpress';
+import { wordpress } from '../../services/wordpress';
 import { getRandomInt } from '../../functions/getRandomInt';
 import { Card } from '../../components';
 
 export const Headings = () => {
-	const { isSuccess, isLoading, isError, data, error } = useQuery(['headlings'], () => WordpressService.getHeadlings());
+	const { isSuccess, isLoading, isError, data, error } = useQuery(['headlings'], () => wordpress.getHeadlings());
 
 	if (isError) {
 		console.log(error);

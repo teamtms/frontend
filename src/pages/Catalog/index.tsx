@@ -2,18 +2,18 @@
 import { ReactElement, lazy } from 'react';
 
 const Title1 = lazy(() => import('../../components/Title1'));
-import { Sidebar } from '../../blocks/Sidebar/index';
+import { Sidebar } from '../../blocks/Sidebar';
 
 
 const Catalog = (): ReactElement => {
 	// const params = useParams();
 
-	// let getPosts: Function = () => WordpressService.getPosts();
+	// let getPosts: Function = () => wordpress.getPosts();
 
 	// if (Object.keys(params).length !== 0)
-	// 	getPosts = () => WordpressService.getPostsByHeadingId(Number(params.id));
+	// 	getPosts = () => wordpress.getPostsByHeadingId(Number(params.id));
 
-	// const { isLoading, isError, data } = useQuery(['posts'], () => WordpressService.getPosts());
+	// const { isLoading, isError, data } = useQuery(['posts'], () => wordpress.getPosts());
 
 	// if (isLoading) return <>Подождите...</>
 	// if (isError) return <>Ошибка...</>

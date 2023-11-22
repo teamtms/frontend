@@ -7,7 +7,7 @@ export const sendMessage = (id: string, token: string, data: { username: string,
 	})
 }
 
-export const Discord = {
+export const discord = {
 	sendSystemMessage: (username: string, content: string) => {
 		sendMessage(
 			'1175873934575554570',

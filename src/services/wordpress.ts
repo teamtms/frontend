@@ -10,7 +10,7 @@ import { INavigation } from '../interfaces/INavigation';
 
 const API = 'https://www.fb24m.ru/tms/wp-json/wp/v2';
 
-export const WordpressService = {
+export const wordpress = {
 	getPosts: () => axios.get<IPost[]>(`${API}/posts`),
 	getHeadlings: () => axios.get<IHeading[]>(`${API}/categories`),
 	getHeadingById: (id: number) => axios.get<IHeading>(`${API}/categories/${id}`),
@@ -24,4 +24,4 @@ export const WordpressService = {
 	getPageById: (id: number) => axios.get<IPage>(`${API}/pages/${id}`),
 	getNavigations: () => axios.get<INavigation[]>(`${API}/navigation`),
 	getWebhookFiles: () => axios.get<IPost[]>(`${API}/webhook-files`),
-} 
+}

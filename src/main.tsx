@@ -2,7 +2,7 @@ import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import './index.css';
 
-import { WordpressService } from './services/wordpress';
+import { wordpress } from './services/wordpress';
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { App } from './App';
@@ -12,7 +12,7 @@ import { SiteSettingsContext } from './contexts/SiteSettings';
 const queryClient = new QueryClient();
 
 (async () => {
-  const response = await WordpressService.getSettings();
+  const response = await wordpress.getSettings();
 
   if (response.data.name !== 'undefined') {
     document.title = `${response.data.name} - ${response.data.description}`;

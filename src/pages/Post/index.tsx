@@ -3,7 +3,7 @@ import React from 'react';
 
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
-import { WordpressService } from '../../services/wordpress';
+import { wordpress } from '../../services/wordpress';
 
 import { getRandomInt } from '../../functions/getRandomInt';
 import { Icon } from '../../components/Icon/index';
@@ -13,15 +13,15 @@ import { Title2 } from '../../components/Body1/index';
 import { Card } from '../../components';
 
 const fetchImage = async (id: number) => {
-	const { data } = await WordpressService.getMediaById(id);
+	const { data } = await wordpress.getMediaById(id);
 	return data;
 };
 const fetchAuthor = async (id: number) => {
-	const { data } = await WordpressService.getUserById(id);
+	const { data } = await wordpress.getUserById(id);
 	return data;
 };
 const fetchCategory = async (id: number) => {
-	const { data } = await WordpressService.getHeadingById(id);
+	const { data } = await wordpress.getHeadingById(id);
 	return data;
 };
 
@@ -80,7 +80,7 @@ const PostDisplay = (props: PostProps): React.ReactElement => {
 const Post = (): React.ReactElement => {
 	const params = useParams();
 
-	const { isSuccess, isError, isLoading, data, error } = useQuery(['post'], () => WordpressService.getPostById(Number(params.id)));
+	const { isSuccess, isError, isLoading, data, error } = useQuery(['post'], () => wordpress.getPostById(Number(params.id)));
 
 	const {
 		isLoading: catalogIsLoading,
@@ -88,7 +88,7 @@ const Post = (): React.ReactElement => {
 		error: catalogError,
 		data: catalog,
 		isSuccess: catalogIsSuccess,
-	} = useQuery(['catalog'], () => WordpressService.getPosts());
+	} = useQuery(['catalog'], () => wordpress.getPosts());
 
 	const { data: imageData, isSuccess: imageIsSuccess } = useQuery([`image`], () => fetchImage(data?.data.featured_media!), {
 		enabled: !!data?.data.featured_media // Запрос будет выполнен только после получения номера изображения

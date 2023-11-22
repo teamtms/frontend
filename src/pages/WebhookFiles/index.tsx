@@ -1,11 +1,11 @@
 import { useQuery } from '@tanstack/react-query';
 import styles from './index.module.scss';
-import React from 'react';
-import { WordpressService } from '../../services/wordpress';
-import { WebhookFile } from './WebhookFile';
+import { lazy } from 'react';
+import { wordpress } from '../../services/wordpress';
+const WebhookFile = lazy(() => import('./WebhookFile'));
 
-const WebhookFilesPage = (): React.ReactElement => {
-	const { data, error } = useQuery({ queryKey: ['webhook-files'], queryFn: () => WordpressService.getWebhookFiles() })
+const WebhookFilesPage = () => {
+	const { data, error } = useQuery({ queryKey: ['webhook-files'], queryFn: () => wordpress.getWebhookFiles() })
 
 	if (data) {
 		return (

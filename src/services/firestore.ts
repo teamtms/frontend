@@ -11,7 +11,6 @@ export const firestore = {
 	isLoggedIn: () => localStorage.getItem('email') && localStorage.getItem('password'),
 	login: async (email?: string, password?: string) => {
 
-
 		if (localStorage.getItem('email') && localStorage.getItem('password')) {
 			email = localStorage.getItem('email')!;
 			password = localStorage.getItem('password')!;

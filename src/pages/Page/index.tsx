@@ -3,13 +3,13 @@ import './index.scss';
 import { useEffect } from 'react';
 
 import { useParams } from 'react-router-dom';
-import { WordpressService } from '../../services/wordpress';
+import { wordpress } from '../../services/wordpress';
 
 export const Page = () => {
 	const params = useParams();
 
 	const { isLoading, isSuccess, isError, data, error } = useQuery([`page-${params.id}`],
-		() => WordpressService.getPageById(Number(params.id)));
+		() => wordpress.getPageById(Number(params.id)));
 
 	useEffect(() => {
 		const links = document.querySelectorAll('a[href^="#"]');

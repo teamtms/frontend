@@ -2,7 +2,7 @@ import styles from './index.module.scss';
 import { useContext } from 'react';
 
 import { useQuery } from '@tanstack/react-query';
-import { WordpressService } from '../../services/wordpress';
+import { wordpress } from '../../services/wordpress';
 import { getRandomInt } from '../../functions/getRandomInt';
 
 import { SiteSettingsContext } from '../../contexts/SiteSettings';
@@ -12,7 +12,7 @@ import { ProfileContext } from '../../App';
 
 const Header = () => {
 	const siteSettings = useContext(SiteSettingsContext);
-	const { isLoading, isError, isSuccess, data, error } = useQuery(['pages'], () => WordpressService.getPages());
+	const { isLoading, isError, isSuccess, data, error } = useQuery(['pages'], () => wordpress.getPages());
 	const user = useContext(ProfileContext);
 
 	if (isError) {
