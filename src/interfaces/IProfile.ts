@@ -3,4 +3,5 @@ export interface IProfile {
 	avatar: string
 	balance: string
 	password: string
+	email: string
 }

@@ -4,9 +4,20 @@ import { Button, Icon, Input } from '../../components';
 const Title1 = lazy(() => import('../../components/Title1'));
 import { ProfileContext } from '../../App';
 import { firestore } from '../../services/firestore';
+import { doc, setDoc } from 'firebase/firestore';
+import { db } from '../../services/firebase';
+
+const changeField = (email: string, fieldName: string, newValue: string) => {
+	console.log(email);
+	setDoc(doc(db, 'users', email), {
+		[fieldName]: newValue
+	}, { merge: true });
+}
 
 const ProfilePage = (): ReactNode => {
 	const user = useContext(ProfileContext);
+
+	console.log(user);
 
 	if (user.username)
 		return (
@@ -16,10 +27,10 @@ const ProfilePage = (): ReactNode => {
 					<img className={styles.avatar} src={user.avatar} alt="Ytyt" />
 					<div className={styles.profile}>
 						<div className={styles.profileBlock}>
-							<Input placeholder={user.username} /> <Button>Сохранить</Button>
+							<Input id="new-username" placeholder={user.username} /> <Button onClick={() => changeField(user.email, 'username', (document.querySelector('#new-username')! as HTMLInputElement).value)}>Сохранить</Button>
 						</div>
 						<div className={styles.profileBlock}>
-							<Input placeholder="Аватарка (ссылка)" /> <Button>Изменить</Button>
+							<Input id="new-avatar" placeholder="Аватарка (ссылка)" /> <Button onClick={() => changeField(user.email, 'avatar', (document.querySelector('#new-avatar')! as HTMLInputElement).value)}>Изменить</Button>
 						</div>
 						<div className={styles.profileBlock}>
 							<Icon icon="monetization_on" /> <span>Баланс: {user.balance}</span>

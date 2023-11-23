@@ -1,18 +1,17 @@
 import styles from './index.module.scss';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { wordpress } from '../../services/wordpress';
 
 import { getRandomInt } from '../../functions/getRandomInt';
-import { Icon } from '../../components/Icon/index';
-import { Breadcrumbs } from '../../components/Breadcrumbs/index';
 import { PostCard } from '../Catalog/PostCard/index';
 import { Title2 } from '../../components/Body1/index';
-import { Card } from '../../components';
+import PostDisplay from './PostDisplay/PostDisplay.component';
 
 const fetchImage = async (id: number) => {
+	console.log('fetching image');
 	const { data } = await wordpress.getMediaById(id);
 	return data;
 };
@@ -25,58 +24,6 @@ const fetchCategory = async (id: number) => {
 	return data;
 };
 
-interface PostProps {
-	appearance: '1' | '2' | '3' | '4'
-	title: string
-	content: string
-	author: string
-	date: string
-	id: number
-	category: string
-	categoryId: number
-	tags: string
-	image: string
-}
-
-const PostDisplay = (props: PostProps): React.ReactElement => {
-	return (
-		<>
-			{props.appearance === '1' ?
-				<img src={props.image} className={`${styles.image} ${styles.noRound}`} alt="" />
-				: ''}
-			{props.appearance === '2' ? '' : ''}
-			{props.appearance === '3' || props.appearance === '2' ?
-				<div className={`container ${styles.imageContainer}`}>
-					<img src={props.image} className={styles.image} alt="" />
-				</div>
-				: ''}
-			<Card className={`container 
-				${props.appearance === '1' ? styles.upper : ''}  
-				${props.appearance !== '2' ? styles.card : ''}
-				${styles.container}`}>
-				<Breadcrumbs items={[{ name: 'Главная', url: '/' }, { name: props.title, url: '#' }]} />
-				<h1>{props.title}</h1>
-				<div className={styles.info}>
-					<div className={styles.infoBlock}>
-						<Icon icon='person' />
-						{props.author}
-					</div>
-					<div className={styles.infoBlock}>
-						<Icon icon='calendar_month' />
-						{props.date}
-					</div>
-					<div className={styles.infoBlock}>
-						<Icon icon='push_pin' />
-						<a className={styles.link} href={`?${getRandomInt(512)}/#/posts/${props.categoryId}`}>{props.category}</a>
-					</div>
-				</div>
-				<div className={styles.article} dangerouslySetInnerHTML={{ __html: props.content }}></div>
-				<div className={styles.infoBlock}><Icon icon='sell' /> {props.tags}</div>
-			</Card>
-		</>
-	)
-}
-
 const Post = (): React.ReactElement => {
 	const params = useParams();
 
@@ -88,16 +35,19 @@ const Post = (): React.ReactElement => {
 		error: catalogError,
 		data: catalog,
 		isSuccess: catalogIsSuccess,
-	} = useQuery(['catalog'], () => wordpress.getPosts());
+	} = useQuery(['catalog'], () => wordpress.getPosts(), { refetchOnMount: true });
 
-	const { data: imageData, isSuccess: imageIsSuccess } = useQuery([`image`], () => fetchImage(data?.data.featured_media!), {
-		enabled: !!data?.data.featured_media // Запрос будет выполнен только после получения номера изображения
-	});
+
 	const { data: authorData, isSuccess: authorIsSuccess } = useQuery([`author`], () => fetchAuthor(data?.data.author!), {
 		enabled: !!data?.data.author // Запрос будет выполнен только после получения номера изображения
 	});
 	const { data: categoryData, isSuccess: categoryIsSuccess } = useQuery([`category`], () => fetchCategory(data?.data.categories[0]!), {
 		enabled: !!data?.data.categories // Запрос будет выполнен только после получения номера изображения
+	});
+	const { data: imageData, isSuccess: imageIsSuccess } = useQuery([`image`], () => fetchImage(data?.data.featured_media!), {
+		enabled: !!data?.data.featured_media, // Запрос будет выполнен только после получения номера изображения
+		refetchInterval: 60000,
+		refetchOnMount: true
 	});
 
 	if (isError || catalogIsError) {

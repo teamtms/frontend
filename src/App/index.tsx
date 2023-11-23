@@ -17,6 +17,7 @@ const SetComponentProperty = lazy(() => import("../pages/LsEdit/SetComponentProp
 const WebhookFilesPage = lazy(() => import("../pages/WebhookFiles"));
 const LoginPage = lazy(() => import("../pages/Login"));
 const ProfilePage = lazy(() => import("../pages/Profile"));
+const PostEditorPage = lazy(() => import("../pages/PostEditor"));
 
 const setComponentProperty = (property: string, value: string) => {
 	if (!localStorage.getItem(property)) localStorage.setItem(property, value);
@@ -74,7 +75,7 @@ export const App = () => {
 
 	if (siteSettings.title !== 'undefined')
 		return (
-			<Suspense fallback={<>Подождите...</>}>
+			<>
 				<form className="search" onSubmit={(e) => {
 					e.preventDefault();
 					location.hash = `#/${(document.querySelector('#command-input')! as HTMLInputElement).value}`;
@@ -83,25 +84,28 @@ export const App = () => {
 				}}>
 					<Input id='command-input' placeholder='Введите команду' />
 				</form>
-				<ProfileContext.Provider value={loginData}>
-					<Header />
-					<HashRouter>
-						<Routes>
-							<Route path='/' Component={Catalog} />
-							<Route path='/posts/:id' Component={Catalog} />
-							<Route path='/post/:id' Component={Post} />
-							<Route path='/p/:id' Component={Page} />
-							<Route path='/send' Component={WebhookPage} />
-							<Route path='/lsedit' Component={LsEditPage} />
-							<Route path='/lsedit/:property/:value' Component={SetComponentProperty} />
-							<Route path='/webhook-files' Component={WebhookFilesPage} />
-							<Route path="/login/" Component={LoginPage} />
-							<Route path="/profile/" Component={ProfilePage} />
-							<Route path='/*' element={'едеотства'} />
-						</Routes>
-					</HashRouter>
-				</ProfileContext.Provider>
-			</Suspense>
+				<Suspense fallback={<>Первая загрузка страницы может занимать дольше обычного...</>}>
+					<ProfileContext.Provider value={loginData}>
+						<Header />
+						<HashRouter>
+							<Routes>
+								<Route path='/' Component={Catalog} />
+								<Route path='/posts/:id' Component={Catalog} />
+								<Route path='/post/:id' Component={Post} />
+								<Route path='/p/:id' Component={Page} />
+								<Route path='/send' Component={WebhookPage} />
+								<Route path='/lsedit' Component={LsEditPage} />
+								<Route path='/lsedit/:property/:value' Component={SetComponentProperty} />
+								<Route path='/webhook-files' Component={WebhookFilesPage} />
+								<Route path="/login/" Component={LoginPage} />
+								<Route path="/profile/" Component={ProfilePage} />
+								<Route path="/posteditor/" Component={PostEditorPage} />
+								<Route path='/*' element={'едеотства'} />
+							</Routes>
+						</HashRouter>
+					</ProfileContext.Provider>
+				</Suspense>
+			</>
 		);
 	else return <LsEditPage />
 };

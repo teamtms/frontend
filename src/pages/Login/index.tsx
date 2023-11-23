@@ -7,16 +7,17 @@ import { firestore } from "../../services/firestore";
 import { IProfile } from "../../interfaces/IProfile";
 
 export const useLogin = () => {
-	const [loginData, setLoginData] = useState<IProfile>({ password: '', balance: '', username: '', avatar: '' })
+	const [loginData, setLoginData] = useState<IProfile>({ password: '', balance: '', username: '', avatar: '', email: '' })
 
 	return {
 		login: (email: string, password: string) =>
 			firestore.login(email, password).then((data) => {
 				setLoginData({
-					password: data ? data.password : '',
-					balance: data ? data.balance : '',
-					username: data ? data.username : '',
-					avatar: data ? data.avatar : '',
+					password: data ? data.fetched.password : '',
+					balance: data ? data.fetched.balance : '',
+					username: data ? data.fetched.username : '',
+					avatar: data ? data.fetched.avatar : '',
+					email: data ? data.email : '',
 				})
 			}),
 		loginData: loginData

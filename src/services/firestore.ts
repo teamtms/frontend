@@ -28,7 +28,7 @@ export const firestore = {
 				localStorage.setItem('email', email!);
 				localStorage.setItem('password', password!);
 
-				return docSnap.data();
+				return { fetched: docSnap.data(), email: email };
 			}
 		}
 		alert('Что-то пошло не так');

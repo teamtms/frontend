@@ -30,7 +30,7 @@ const Header = () => {
 		<header className={styles.header}>
 			<div className={`container ${styles.container}`}>
 				<div className={styles.logo}>
-					<a href={`?${getRandomInt(512)}`} className={styles.link}>
+					<a href={`#`} className={styles.link}>
 						<img src={siteSettings.icon} alt="" className={styles.icon} />
 						<div className={styles.text}>
 							<h2 className={styles.bigLabel}>{siteSettings.title}</h2>
@@ -41,11 +41,11 @@ const Header = () => {
 				<ul className={styles.menu}>
 					{data.data.map((item, index) =>
 						<li key={index} className={styles.menuItem}>
-							<Button appearance='link' href={`?${getRandomInt(512)}/#/p/${item.id}`} className={styles.menuLink}>{item.title.rendered}</Button>
+							<Button appearance='link' as="a" href={`#/p/${item.id}`} className={styles.menuLink}>{item.title.rendered}</Button>
 						</li>)}
 				</ul>
 				{firestore.isLoggedIn() ?
-					<a href="/#/profile"><Card className={styles.profileCard}>
+					<a href="#/profile"><Card className={styles.profileCard}>
 						<div className={styles.profileBlock}>
 							<img className={styles.avatar} src={user.avatar} alt="" /> {user.username}
 						</div>
