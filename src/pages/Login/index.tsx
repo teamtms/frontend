@@ -3,11 +3,11 @@ import { FormEvent, ReactNode, lazy, useState } from 'react';
 
 import { Button, Card, Input } from '../../components';
 const Title2 = lazy(() => import('../../components/Title2'));
-import { firestore } from "../../services/firestore";
+import { firestore } from "../../services/firestore.service";
 import { IProfile } from "../../interfaces/IProfile";
 
 export const useLogin = () => {
-	const [loginData, setLoginData] = useState<IProfile>({ password: '', balance: '', username: '', avatar: '', email: '' })
+	const [loginData, setLoginData] = useState<IProfile>({} as IProfile);
 
 	return {
 		login: (email: string, password: string) =>
@@ -17,6 +17,10 @@ export const useLogin = () => {
 					balance: data ? data.fetched.balance : '',
 					username: data ? data.fetched.username : '',
 					avatar: data ? data.fetched.avatar : '',
+					fraction: data ? data.fetched.fraction : '',
+					role: data ? data.fetched.role : '',
+					status: data ? data.fetched.status : '',
+					friends: data ? data.fetched.friends : '',
 					email: data ? data.email : '',
 				})
 			}),

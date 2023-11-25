@@ -3,7 +3,7 @@ import axios from 'axios';
 import { ReactNode, lazy } from 'react';
 import { Button, Input, Spoiler } from '../../components';
 const Title2 = lazy(() => import('../../components/Title2'));
-const WebhookCard = lazy(() => import('./WebhookCard'));
+const WebhookCard = lazy(() => import('./WebhookCard/WebhookCard.component'));
 
 const queryParams: any = {};
 

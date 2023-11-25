@@ -1,5 +1,5 @@
 import styles from './index.module.scss';
-import React, { useEffect, useState } from 'react';
+import React, { lazy } from 'react';
 
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
@@ -8,7 +8,7 @@ import { wordpress } from '../../services/wordpress';
 import { getRandomInt } from '../../functions/getRandomInt';
 import { PostCard } from '../Catalog/PostCard/index';
 import { Title2 } from '../../components/Body1/index';
-import PostDisplay from './PostDisplay/PostDisplay.component';
+const PostDisplay = lazy(() => import('./PostDisplay/PostDisplay.component'));;
 
 const fetchImage = async (id: number) => {
 	console.log('fetching image');

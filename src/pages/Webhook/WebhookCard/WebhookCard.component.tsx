@@ -1,6 +1,6 @@
-import styles from "./index.module.scss";
+import styles from "./WebhookCard.module.scss";
 import { Card, Icon } from "../../../components";
-import { WebhookCardProps } from "./WebhookCardProps";
+import { WebhookCardProps } from "./WebhookCard.props";
 
 const WebhookCard = (props: WebhookCardProps) => {
 	return (
@@ -10,7 +10,7 @@ const WebhookCard = (props: WebhookCardProps) => {
 					<input type="radio" name="webhook" id={props.id} />
 					{props.label}
 				</div>
-				<button onClick={() => { localStorage.removeItem(`wh-${props.label}`); location.reload() }}>
+				<button onClick={() => { if (confirm(`Вы хотите удалить вебхук "${props.label}"?`)) { localStorage.removeItem(`wh-${props.label}`); location.reload() } }}>
 					<Icon icon="close" />
 				</button>
 			</Card>

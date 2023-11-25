@@ -1,0 +1,14 @@
+.logo a {
+	display: flex;
+	gap: 16px;
+	white-space: nowrap;
+
+	@media (max-width: 768px) {
+		align-items: center;
+	}
+}
+
+.icon {
+	width: 64px;
+	height: 64px;
+}

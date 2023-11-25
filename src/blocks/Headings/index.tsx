@@ -1,6 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
 import { wordpress } from '../../services/wordpress';
-import { getRandomInt } from '../../functions/getRandomInt';
 import { Card } from '../../components';
 
 export const Headings = () => {
@@ -20,9 +19,10 @@ export const Headings = () => {
 	return (
 		<Card>
 			{data.data.map((headling) =>
-				<a key={headling.id} href={`?${getRandomInt(15)}/#/posts/${headling.id}`}>
-					{headling.name}
-				</a>
+				// <a key={headling.id} href={`?${getRandomInt(15)}/#/posts/${headling.id}`}>
+				// 	{headling.name}
+				// </a>
+				<>[{headling.id}] Рубрики временно отключены :( <br /><br /></>
 			)}
 		</Card>
 	);

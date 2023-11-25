@@ -3,7 +3,7 @@ import React, { lazy } from 'react';
 
 import { Card, Button } from '../../../components';
 const Title2 = lazy(() => import('../../../components/Title2'));
-import { discord } from '../../../services/discord';
+import { discord } from '../../../services/Discord.service';
 
 export interface WebhookFileProps {
 	title: string
@@ -11,7 +11,7 @@ export interface WebhookFileProps {
 }
 
 const WebhookFile = (props: WebhookFileProps): React.ReactElement => {
-	const content = props.content.replace(/[<p>,</p>]/g, '');
+	const content = props.content.replace(/[<p>,</p>]/g, '').replace(/br/g, '\n');
 
 	return (
 		<Card>

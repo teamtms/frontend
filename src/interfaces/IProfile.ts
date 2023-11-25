@@ -4,4 +4,8 @@ export interface IProfile {
 	balance: string
 	password: string
 	email: string
+	fraction: string
+	role: string
+	status: string
+	friends: string[]
 }

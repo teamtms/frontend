@@ -6,8 +6,11 @@ import { SiteSettingsContext } from '../contexts/SiteSettings';
 import { Input } from '../components/Input';
 import { useLogin } from '../pages/Login';
 import { IProfile } from '../interfaces/IProfile';
+import { User } from '../pages/User/User.component';
 
 const Header = lazy(() => import("../blocks/Header"));
+const Footer = lazy(() => import("../blocks/Footer/Footer.component"));
+
 const Catalog = lazy(() => import("../pages/Catalog"));
 const Post = lazy(() => import("../pages/Post"));
 const Page = lazy(() => import("../pages/Post"));
@@ -16,8 +19,9 @@ const LsEditPage = lazy(() => import("../pages/LsEdit"));
 const SetComponentProperty = lazy(() => import("../pages/LsEdit/SetComponentProperty"));
 const WebhookFilesPage = lazy(() => import("../pages/WebhookFiles"));
 const LoginPage = lazy(() => import("../pages/Login"));
-const ProfilePage = lazy(() => import("../pages/Profile"));
+const MyProfilePage = lazy(() => import("../pages/MyProfile/MyProfile.component"));
 const PostEditorPage = lazy(() => import("../pages/PostEditor"));
+const CreateProfilePage = lazy(() => import("../pages/CreateProfile/CreateProfile.component"));
 
 const setComponentProperty = (property: string, value: string) => {
 	if (!localStorage.getItem(property)) localStorage.setItem(property, value);
@@ -87,22 +91,29 @@ export const App = () => {
 				<Suspense fallback={<>Первая загрузка страницы может занимать дольше обычного...</>}>
 					<ProfileContext.Provider value={loginData}>
 						<Header />
-						<HashRouter>
-							<Routes>
-								<Route path='/' Component={Catalog} />
-								<Route path='/posts/:id' Component={Catalog} />
-								<Route path='/post/:id' Component={Post} />
-								<Route path='/p/:id' Component={Page} />
-								<Route path='/send' Component={WebhookPage} />
-								<Route path='/lsedit' Component={LsEditPage} />
-								<Route path='/lsedit/:property/:value' Component={SetComponentProperty} />
-								<Route path='/webhook-files' Component={WebhookFilesPage} />
-								<Route path="/login/" Component={LoginPage} />
-								<Route path="/profile/" Component={ProfilePage} />
-								<Route path="/posteditor/" Component={PostEditorPage} />
-								<Route path='/*' element={'едеотства'} />
-							</Routes>
-						</HashRouter>
+						<main className="main">
+							<HashRouter>
+								<Routes>
+									<Route path='/' Component={Catalog} />
+									<Route path='/posts/:id' Component={Catalog} />
+									<Route path='/post/:id' Component={Post} />
+									<Route path='/p/:id' Component={Page} />
+									<Route path='/send' Component={WebhookPage} />
+									<Route path='/lsedit' Component={LsEditPage} />
+									<Route path='/lsedit/:property/:value' Component={SetComponentProperty} />
+									<Route path='/webhook-files' Component={WebhookFilesPage} />
+									<Route path="/login/" Component={LoginPage} />
+									<Route path="/profile/" Component={MyProfilePage} />
+									<Route path="/posteditor/" Component={PostEditorPage} />
+									<Route path="/user/:login" Component={User} />
+									{loginData.status === 'admin' ?
+										<Route path="/create-profile/" Component={CreateProfilePage} />
+										: ''}
+									<Route path='/*' element={'едеотства'} />
+								</Routes>
+							</HashRouter>
+						</main>
+						<Footer />
 					</ProfileContext.Provider>
 				</Suspense>
 			</>

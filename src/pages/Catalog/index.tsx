@@ -25,7 +25,7 @@ const Catalog = (): ReactElement => {
 	return (
 		<div className='container sidebar'>
 			<div className={styles.content}>
-				<Title1 className={styles.title}>Все посты в рубрике {data?.data[0].title.rendered}</Title1>
+				<Title1 className={styles.title}>Все посты</Title1>
 				<div className={styles.posts}>
 					{data ? data.data.map((post: IPost) =>
 						<PostCard

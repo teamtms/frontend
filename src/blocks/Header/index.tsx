@@ -3,11 +3,10 @@ import { useContext } from 'react';
 
 import { useQuery } from '@tanstack/react-query';
 import { wordpress } from '../../services/wordpress';
-import { getRandomInt } from '../../functions/getRandomInt';
 
 import { SiteSettingsContext } from '../../contexts/SiteSettings';
 import { Button, Card, Icon } from '../../components';
-import { firestore } from '../../services/firestore';
+import { firestore } from '../../services/firestore.service';
 import { ProfileContext } from '../../App';
 
 const Header = () => {
